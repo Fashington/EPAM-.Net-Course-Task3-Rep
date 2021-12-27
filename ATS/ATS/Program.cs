@@ -61,6 +61,15 @@ namespace ATS
 
             // Modelling calls
 
+            for (int i = 0; i < ports.Length; i++)
+            {
+                Random randomNumber = new Random();
+                string number = randomNumber.Next(10, 13).ToString();
+                Console.WriteLine($"\n{ports[i].Number} >> {number}\n");
+                users[i].InitiateCall(number);
+                users[i].CallReject();
+            }
+
             // Trying to call the same number from different phones. Results can depend on was call rejected, or accepted.
             Console.WriteLine("\n10 >> 13\n");
             users[0].InitiateCall("13");
@@ -97,8 +106,8 @@ namespace ATS
             Console.WriteLine("\nFiltering call list by date\n");
             station.FilterByDate(DateTime.Now);
 
-            Console.WriteLine("\nFiltering call list by cost\n");
-            station.FilterByCost(0.0, 0.56);
+            Console.WriteLine("\nFiltering call list by cost from 1 BYN to 2 BYN\n");
+            station.FilterByCost(1.0, 2.0);
 
             // Unbinding
 
